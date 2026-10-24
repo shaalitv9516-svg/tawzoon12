@@ -1349,21 +1349,21 @@ export const ShopCategoryPage: React.FC<ShopCategoryPageProps> = ({
       )}
 
       {/* ------------------------------------------------------------- */}
-      {/* SIDE DRAWER 2: FILTER DRAWER (Sleek, Compact & Small on Mobile) */}
+      {/* SIDE DRAWER 2: FILTER DRAWER (Positioned at Filter Button & Clean Width) */}
       {/* ------------------------------------------------------------- */}
       {filterDrawerOpen && (
-        <div className="fixed inset-0 z-[1000] flex justify-end animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-[1000] flex items-start justify-center pt-24 sm:pt-28 px-3 animate-in fade-in duration-200">
           <div
             className="fixed inset-0 bg-black/40 backdrop-blur-2xs"
             onClick={() => setFilterDrawerOpen(false)}
           />
-          <div className="relative w-[78%] max-w-[270px] bg-white h-full shadow-2xl z-10 flex flex-col p-3 sm:p-4 rounded-l-2xl animate-in slide-in-from-right duration-200">
+          <div className="relative w-full max-w-[360px] bg-white shadow-2xl z-10 flex flex-col p-3 rounded-2xl animate-in zoom-in-95 duration-200">
             
             {/* Header */}
-            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+            <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-3.5 bg-[#009245] rounded-full inline-block" />
-                <h3 className="font-black text-slate-900 text-xs sm:text-sm">
+                <span className="w-1.5 h-3 bg-[#009245] rounded-full inline-block" />
+                <h3 className="font-black text-slate-900 text-xs">
                   {lang === 'bn' ? 'ফিল্টার করুন' : 'Filter Products'}
                 </h3>
               </div>
@@ -1376,7 +1376,7 @@ export const ShopCategoryPage: React.FC<ShopCategoryPageProps> = ({
             </div>
 
             {/* Scrollable Body */}
-            <div className="flex-1 overflow-y-auto py-2 space-y-3 text-xs">
+            <div className="flex-1 overflow-y-auto py-1.5 space-y-2 text-xs max-h-[60vh]">
               
               {/* Max Price */}
               <div className="space-y-1">
@@ -1400,7 +1400,7 @@ export const ShopCategoryPage: React.FC<ShopCategoryPageProps> = ({
               </div>
 
               {/* Brand */}
-              <div className="space-y-1 pt-2 border-t border-slate-100">
+              <div className="space-y-1 pt-1.5 border-t border-slate-100">
                 <h4 className="font-bold text-slate-800 text-[11px]">{lang === 'bn' ? 'ব্র্যান্ড' : 'Brand'}</h4>
                 <div className="space-y-0.5">
                   {['Premium', 'Original', 'Local', 'Imported'].map((brand) => (
@@ -1427,7 +1427,7 @@ export const ShopCategoryPage: React.FC<ShopCategoryPageProps> = ({
               </div>
 
               {/* Rating */}
-              <div className="space-y-1 pt-2 border-t border-slate-100">
+              <div className="space-y-1 pt-1.5 border-t border-slate-100">
                 <h4 className="font-bold text-slate-800 text-[11px]">{lang === 'bn' ? 'রেটিং' : 'Rating'}</h4>
                 <div className="space-y-0.5">
                   {[5, 4, 3].map((stars) => (
@@ -1459,26 +1459,18 @@ export const ShopCategoryPage: React.FC<ShopCategoryPageProps> = ({
               </div>
             </div>
 
-            {/* Bottom Actions with comfortable bottom safe padding */}
-            <div className="pt-2 pb-2 sm:pb-0 border-t border-slate-100 flex items-center gap-1.5">
+            {/* Bottom Actions: Reset button only */}
+            <div className="pt-1.5 border-t border-slate-100 flex items-center justify-between gap-1.5">
               <button
                 onClick={() => {
                   setMaxPrice(10000);
                   setSelectedBrands(['Premium']);
                   setSelectedRating(5);
                 }}
-                className="py-2 px-2.5 bg-slate-100 text-slate-700 rounded-lg text-[11px] font-bold hover:bg-slate-200 transition-colors flex items-center gap-1 shrink-0 active:scale-95 cursor-pointer"
+                className="w-full py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-[11px] font-bold transition-colors flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
               >
                 <RotateCcw className="w-3 h-3" />
-                <span>{lang === 'bn' ? 'রিসেট' : 'Reset'}</span>
-              </button>
-
-              <button
-                onClick={() => setFilterDrawerOpen(false)}
-                className="flex-1 py-2 bg-[#009245] hover:bg-[#007a3a] text-white rounded-lg text-[11px] font-bold shadow-2xs transition-colors flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
-              >
-                <Filter className="w-3 h-3" />
-                <span>{lang === 'bn' ? 'প্রয়োগ করুন' : 'Apply'}</span>
+                <span>{lang === 'bn' ? 'রিসেট করুন' : 'Reset All'}</span>
               </button>
             </div>
           </div>

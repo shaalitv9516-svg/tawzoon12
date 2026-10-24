@@ -1175,84 +1175,6 @@ ${desc ? `\n📝 পণ্যের বিবরণ:\n${desc}\n` : ''}
       )}
 
       {/* ------------------------------------------------------------- */}
-      {/* 3. SUB-CATEGORY BREADCRUMB & TOOLBAR (When a category/section is selected) */}
-      {/* ------------------------------------------------------------- */}
-      {selectedSubCategory !== null && (
-        <div className="space-y-2">
-          {/* Breadcrumb Bar */}
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 p-2 sm:p-2.5 shadow-2xs flex items-center justify-between gap-2">
-            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-              <button
-                type="button"
-                onClick={() => setSelectedSubCategory(null)}
-                className="px-2.5 py-1 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0 active:scale-95"
-              >
-                <ChevronLeft className="w-3.5 h-3.5 text-slate-600" />
-                <span>{lang === 'bn' ? 'ফিরে যান' : 'Back'}</span>
-              </button>
-
-              <nav className="flex items-center gap-1 text-xs font-medium text-slate-600 truncate">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCurrentView('public-home');
-                    setSelectedSubCategory(null);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="text-slate-400 hover:text-[#009245] transition-colors cursor-pointer shrink-0"
-                >
-                  🏠 {lang === 'bn' ? 'হোম' : 'Home'}
-                </button>
-                <span className="text-slate-400">&gt;</span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedSubCategory(null)}
-                  className="text-slate-500 hover:text-[#009245] uppercase transition-colors cursor-pointer truncate max-w-[120px]"
-                >
-                  {currentCategoryConfig.title}
-                </button>
-                <span className="text-slate-400">&gt;</span>
-                <span className="text-[#009245] font-bold truncate">{selectedSubCategory}</span>
-              </nav>
-            </div>
-          </div>
-
-          {/* Category Title & Filter Controls Bar */}
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 p-2.5 sm:p-3 shadow-2xs flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <h2 className="text-sm sm:text-base md:text-lg font-black text-slate-900 tracking-tight">
-                {selectedSubCategory}
-              </h2>
-              <span className="bg-emerald-50 text-[#009245] text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-200">
-                {displayProducts.length} {lang === 'bn' ? 'টি পণ্য' : 'items'}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 flex-wrap">
-              <button
-                type="button"
-                onClick={() => setIsSideCatalogOpen(true)}
-                className="px-3 py-1.5 text-xs font-bold text-slate-700 bg-slate-50 hover:bg-emerald-50 hover:text-[#009245] border border-slate-200 rounded-xl inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <FolderOpen className="w-3.5 h-3.5 text-[#009245]" />
-                <span>{lang === 'bn' ? 'ক্যাটাগরি' : 'Category'}</span>
-              </button>
-
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-1.5 text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 rounded-xl outline-none focus:border-[#009245] cursor-pointer"
-              >
-                <option value="popular">{lang === 'bn' ? 'জনপ্রিয়তা' : 'Popularity'}</option>
-                <option value="price-low">{lang === 'bn' ? 'দাম: কম থেকে বেশি' : 'Price: Low to High'}</option>
-                <option value="price-high">{lang === 'bn' ? 'দাম: বেশি থেকে কম' : 'Price: High to Low'}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ------------------------------------------------------------- */}
       {/* 4. PRODUCTS GRID (Shown only when subcategory selected or searching) */}
       {/* ------------------------------------------------------------- */}
       {(selectedSubCategory !== null || searchQuery.trim() !== '') && (
@@ -1264,6 +1186,27 @@ ${desc ? `\n📝 পণ্যের বিবরণ:\n${desc}\n` : ''}
                 ({displayProducts.length})
               </span>
             </h3>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setIsSideCatalogOpen(true)}
+                className="px-2.5 py-1 text-xs font-bold text-slate-700 bg-slate-50 hover:bg-emerald-50 hover:text-[#009245] border border-slate-200 rounded-lg inline-flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <FolderOpen className="w-3.5 h-3.5 text-[#009245]" />
+                <span>{lang === 'bn' ? 'ক্যাটাগরি' : 'Category'}</span>
+              </button>
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-2.5 py-1 text-xs font-bold bg-slate-50 border border-slate-200 text-slate-700 rounded-lg outline-none focus:border-[#009245] cursor-pointer"
+              >
+                <option value="popular">{lang === 'bn' ? 'জনপ্রিয়তা' : 'Popularity'}</option>
+                <option value="price-low">{lang === 'bn' ? 'দাম: কম থেকে বেশি' : 'Price: Low to High'}</option>
+                <option value="price-high">{lang === 'bn' ? 'দাম: বেশি থেকে কম' : 'Price: High to Low'}</option>
+              </select>
+            </div>
           </div>
 
           {displayProducts.length === 0 ? (
